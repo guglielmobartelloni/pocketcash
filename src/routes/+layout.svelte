@@ -1,14 +1,19 @@
 <script lang="ts">
   import '@picocss/pico'
+  export let data
 </script>
 <nav class="container">
   <ul>
     <li><strong>Pocketcash</strong></li>
   </ul>
   <ul>
-    <li><a href="#">Add an expanse</a></li>
-    <li><a href="#">Register</a></li>
-    <li><a href="#" role="button">Login</a></li>
+  {#if !data.user}
+    <li><a href="/register">Register</a></li>
+    <li><a href="/login" role="button">Login</a></li>
+  {:else}
+    <li><a href="/expenses/new">Add an expanse</a></li>
+    <li>Hello user</li>
+  {/if}
   </ul>
 </nav >
 <main  class="container">
