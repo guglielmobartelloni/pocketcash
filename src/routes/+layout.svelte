@@ -12,7 +12,7 @@
             <li><a href="/register">Register</a></li>
             <li><a href="/login" role="button">Login</a></li>
         {:else}
-            <li><a href="/expenses/new" role="button">Add an expanse</a></li>
+            <li><a href="/expenses/new">Add an expanse</a></li>
             <li>{data.user.username}</li>
                 <li><a href="/logout">Logout</a></li>
         {/if}
