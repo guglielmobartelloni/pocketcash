@@ -1,4 +1,4 @@
-import { error, invalid, redirect } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 
 export const load = ({ locals }) => {
     if (!locals.pb.authStore.isValid) {
@@ -13,7 +13,7 @@ export const actions = {
             await locals.pb.collection('transactions').create({ user: locals.user.id, ...body })
         } catch (err) {
             console.log(err)
-            throw error(500, 'Something went wrong')
+            throw error(err.status, err.data.message)
         }
 
         throw redirect(303, '/');

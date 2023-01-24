@@ -9,7 +9,7 @@
   <input type="date" id="transaction_date" name="transaction_date" required>
 
   <label for="amount">Amount</label>
-  <input type="number" id="amount" name="amount" required>
+  <input type="number" step="0.01" id="amount" name="amount" required>
 
   <!-- Button -->
   <button type="submit">Submit</button>

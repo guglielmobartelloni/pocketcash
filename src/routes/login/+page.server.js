@@ -6,7 +6,7 @@ export const actions = {
             await locals.pb.collection('users').authWithPassword(body.email, body.password)
         } catch (err) {
             console.log(err)
-            throw error(500, 'Something went wrong')
+            throw error(err.status, err.data.message)
         }
 
         throw redirect(303, '/')
