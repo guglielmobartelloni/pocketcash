@@ -1,5 +1,5 @@
 <h2>Add expense</h2>
-<form action="?/expenses/new" method="POST">
+<form action="?/new" method="POST">
 
   <!-- Markup example 2: input is after label -->
   <label for="name">Name</label>
