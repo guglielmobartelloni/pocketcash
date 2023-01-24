@@ -10,7 +10,6 @@ export const load = ({ locals }) => {
         const transactions = serializeNonPOJOs(await locals.pb.collection('transactions').getList())
         console.log(transactions)
         return transactions;
-
     }
     return { transactions: getTransactions() }
 };
