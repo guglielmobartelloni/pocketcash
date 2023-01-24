@@ -1,5 +1,7 @@
 <script>
 export let data;
+
+let totalAmount = data.transactions.items.map( (it) => it.amount).reduce( (a,b) => a+b, 0)
 </script>
 <table>
     <thead>
@@ -13,19 +15,19 @@ export let data;
     <tbody>
     {#each data.transactions.items as trans }
         <tr>
+            <td>{new Date(trans.transaction_date).toLocaleDateString('en-US')}</td>
             <td>{trans.name}</td>
-            <td>{trans.transaction_date}</td>
             <td>{trans.amount}$</td>
-            <td>Banana</td>
+            <td>{trans.categories}</td>
         </tr>
     {/each}
     </tbody>
     <tfoot>
         <tr>
-            <th scope="col">#</th>
-            <td scope="col">Total</td>
-            <td scope="col">Total</td>
-            <td scope="col">Total</td>
+            <th></th>
+            <td></td>
+            <td>{totalAmount}$</td>
+            <td></td>
         </tr>
     </tfoot>
 </table>
