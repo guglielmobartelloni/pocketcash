@@ -60,11 +60,9 @@ let chartData = data.transactions.items.sort((a,b) => new Date(a) <= new Date(b)
         {#each data.transactions.items as trans}
             <tr>
                 <td>{trans.type == "expense" ? "💸" : "💰"}</td>
-                <td
-                    >{trans.type == "expense" ? "-" : "+"}{formatter.format(
+                <td>{trans.type == "expense" ? "-" : "+"}{formatter.format(
                         trans.amount
-                    )}</td
-                >
+                    )}</td>
                 <td>{trans.name}</td>
                 <td
                     >{new Date(trans.transaction_date).toLocaleDateString(
