@@ -7,8 +7,10 @@ export const load = ({ locals }) => {
     }
 
     const getTransactions = async () => {
-        const transactions = serializeNonPOJOs(await locals.pb.collection('transactions').getList())
-        console.log(transactions)
+        const transactions = serializeNonPOJOs(await locals.pb
+            .collection('transactions')
+            .getList(1, 50, { sort: '-created' }))
+        console.log('Transactions: '+transactions)
         return transactions;
     }
     return { transactions: getTransactions() }
