@@ -1,0 +1,41 @@
+<.header>
+  Listing Transactions
+  <:actions>
+    <.link patch={~p"/transactions/new"}>
+      <.button>New Transaction</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="transactions" rows={@transactions} row_click={&JS.navigate(~p"/transactions/#{&1}")}>
+  <:col :let={transaction} label="Title"><%= transaction.title %></:col>
+  <:col :let={transaction} label="Amount"><%= transaction.amount %></:col>
+  <:col :let={transaction} label="Date"><%= transaction.date %></:col>
+  <:action :let={transaction}>
+    <div class="sr-only">
+      <.link navigate={~p"/transactions/#{transaction}"}>Show</.link>
+    </div>
+    <.link patch={~p"/transactions/#{transaction}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={transaction}>
+    <.link phx-click={JS.push("delete", value: %{id: transaction.id})} data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal
+  :if={@live_action in [:new, :edit]}
+  id="transaction-modal"
+  show
+  on_cancel={JS.navigate(~p"/transactions")}
+>
+  <.live_component
+    module={PocketcashWeb.TransactionLive.FormComponent}
+    id={@transaction.id || :new}
+    title={@page_title}
+    action={@live_action}
+    transaction={@transaction}
+    navigate={~p"/transactions"}
+  />
+</.modal>
