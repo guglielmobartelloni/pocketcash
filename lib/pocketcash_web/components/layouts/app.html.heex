@@ -1,26 +1,3 @@
-<header class="navbar bg-base-100">
-  <div class="navbar-start">
-    <.link href={~p"/"} class="btn btn-ghost normal-case text-xl">PocketCash</.link>
-  </div>
-  <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-      <li><a>New Transaction</a></li>
-      <li><a>Item 3</a></li>
-    </ul>
-  </div>
-  <div class="navbar-end">
-    <ul class="menu menu-horizontal px-1">
-      <%= if @current_user do %>
-        <li><a><%= @current_user.email %></a></li>
-        <li> <.link href={~p"/users/settings"} class="btn">Settings</.link> </li>
-        <li> <.link href={~p"/users/log_out"} method="delete" class="btn">Log out</.link> </li>
-      <% else %>
-        <li> <.link href={~p"/users/register"} class="btn">Register</.link> </li>
-        <li> <.link href={~p"/users/log_in"} class="btn">Log in</.link> </li>
-      <% end %>
-    </ul>
-  </div>
-</header>
 <main class="px-4 py-20 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-2xl">
     <.flash kind={:info} title="Success!" flash={@flash} />

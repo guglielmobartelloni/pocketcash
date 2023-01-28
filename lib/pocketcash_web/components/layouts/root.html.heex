@@ -10,9 +10,46 @@
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.49.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.49.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
   </head>
   <body class="bg-white antialiased">
+    <header class="navbar bg-base-100">
+      <div class="navbar-start">
+        <.link href={~p"/transactions"} class="btn btn-ghost normal-case text-xl">PocketCash</.link>
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li>
+            <.link href={~p"/transactions/new"}>New Transaction</.link>
+          </li>
+          <li><a>Charts</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end">
+        <ul class="menu menu-horizontal px-1">
+          <%= if @current_user do %>
+            <li><a><%= @current_user.email %></a></li>
+            <li>
+              <.link href={~p"/users/settings"} class="btn">Settings</.link>
+            </li>
+            <li>
+              <.link href={~p"/users/log_out"} method="delete" class="btn">Log out</.link>
+            </li>
+          <% else %>
+            <li>
+              <.link href={~p"/users/register"} class="btn">Register</.link>
+            </li>
+            <li>
+              <.link href={~p"/users/log_in"} class="btn">Log in</.link>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </header>
     <%= @inner_content %>
   </body>
 </html>
