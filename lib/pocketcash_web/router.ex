@@ -20,7 +20,7 @@ defmodule PocketcashWeb.Router do
   scope "/", PocketcashWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    # get "/", PageController, :home
   end
 
   # Other scopes may use custom stacks.
@@ -70,6 +70,7 @@ defmodule PocketcashWeb.Router do
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
 
       live "/transactions", TransactionLive.Index, :index
+      live "/", TransactionLive.Index, :index
       live "/transactions/new", TransactionLive.Index, :new
       live "/transactions/:id/edit", TransactionLive.Index, :edit
 

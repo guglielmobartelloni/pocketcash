@@ -17,39 +17,45 @@
     />
   </head>
   <body class="bg-white antialiased">
-    <header class="navbar bg-base-100">
-      <div class="navbar-start">
-        <.link href={~p"/transactions"} class="btn btn-ghost normal-case text-xl">PocketCash</.link>
+    <div class="navbar bg-base-100">
+      <div class="flex-1">
+        <.link href={~p"/"} class="btn btn-ghost normal-case text-xl">PocketCash</.link>
       </div>
-      <div class="navbar-center hidden lg:flex">
+      <div class="flex-none gap-2">
         <ul class="menu menu-horizontal px-1">
           <li>
-            <.link href={~p"/transactions/new"}>New Transaction</.link>
+            <.link href={~p"/transactions/new"}>New transaction</.link>
           </li>
-          <li><a>Charts</a></li>
         </ul>
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <img src="https://picsum.photos/200" />
+            </div>
+          </label>
+          <ul
+            tabindex="0"
+            class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+          >
+            <%= if @current_user do %>
+              <li>
+                <.link href={~p"/users/settings"} class="justify-between">Profile</.link>
+              </li>
+              <li>
+                <.link href={~p"/users/log_out"} method="delete">Log out</.link>
+              </li>
+            <% else %>
+              <li>
+                <.link href={~p"/users/register"} class="btn">Register</.link>
+              </li>
+              <li>
+                <.link href={~p"/users/log_in"} class="btn">Log in</.link>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
-      <div class="navbar-end">
-        <ul class="menu menu-horizontal px-1">
-          <%= if @current_user do %>
-            <li><a><%= @current_user.email %></a></li>
-            <li>
-              <.link href={~p"/users/settings"} class="btn">Settings</.link>
-            </li>
-            <li>
-              <.link href={~p"/users/log_out"} method="delete" class="btn">Log out</.link>
-            </li>
-          <% else %>
-            <li>
-              <.link href={~p"/users/register"} class="btn">Register</.link>
-            </li>
-            <li>
-              <.link href={~p"/users/log_in"} class="btn">Log in</.link>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </header>
+    </div>
     <%= @inner_content %>
   </body>
 </html>
